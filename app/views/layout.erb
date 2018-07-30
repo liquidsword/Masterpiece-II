@@ -7,19 +7,32 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <title>MasterpieceIi</title>
+    <title>MasterpieceII</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    <nav>
+      <% if logged_in? %>
+
+        <a href="/drawings/new"> Create New Artwork </a>
+        <a href="/logout"> Log Out </a>
+        <p>Welcome, <%=current_artist.artist_name %></p>
+
+      <% else %>
+        <a href="/join">Join</a>
+        <a href="/login"> Sign In </a>
+      <%end %>
+
+    </nav>
     <div class="wrapper">
 
         <%= yield %>
 
       <footer class="branding">
-        <small>&copy; 2018 <strong>MasterpieceIi</strong></small>
+        <small>&copy; 2018 <strong>MasterpieceII</strong></small>
       </footer>
     </div>
 
