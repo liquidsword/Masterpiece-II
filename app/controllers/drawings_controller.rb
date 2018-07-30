@@ -93,5 +93,4 @@ class DrawingsController < ApplicationController
             redirect to '/login'
         end
     end
-
 end
