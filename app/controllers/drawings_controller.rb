@@ -1,37 +1,97 @@
 class DrawingsController < ApplicationController
 
-  # GET: /drawings
-  get "/drawings" do
-    erb :"/drawings/index.html"
-  end
+    get '/drawings' do
+        if session[:artist_id]
+            @drawings = Drawing.all
+            erb :'drawings/drawings'
+        else
+            redirect to '/login'
+        end
+    end
 
-  # GET: /drawings/new
-  get "/drawings/new" do
-    erb :"/drawings/new.html"
-  end
+    get '/drawings/new' do
+        if session[:artist_id]
+            erb :'drawings/create_drawing'
+        else
+            redirect to '/login'
+        end
+    end
 
-  # POST: /drawings
-  post "/drawings" do
-    redirect "/drawings"
-  end
+    post '/drawings' do
 
-  # GET: /drawings/5
-  get "/drawings/:id" do
-    erb :"/drawings/show.html"
-  end
+        if params[:art]== ""
+            redirect to '/drawings/new'
+        else
+            artist = Artist.find_by_id(session[:artist_id])
+            @drawing = Drawing.create(:art => params[:art], :artist_id => artist.id)
+            redirect to "/drawings/#{@drawing.id}"
+        end
+    end
 
-  # GET: /drawings/5/edit
-  get "/drawings/:id/edit" do
-    erb :"/drawings/edit.html"
-  end
+    get '/drawings/:id' do
 
-  # PATCH: /drawings/5
-  patch "/drawings/:id" do
-    redirect "/drawings/:id"
-  end
+        if session[:artist_id]
+            @drawing = Drawing.find_by_id(params[:id])
+            erb :'/drawings/show_drawing'
+        else
+            redirect to '/login'
+        end
+    end
 
-  # DELETE: /drawings/5/delete
-  delete "/drawings/:id/delete" do
-    redirect "/drawings"
-  end
+
+    get '/drawings/:id/edit' do
+        if session[:artist_id]
+            @drawing = Drawing.find_by_id(params[:id])
+            if @drawing.artist_id == session[:artist_id]
+                erb :'drawings/edit_drawing'
+            else
+                redirect to '/drawings'
+            end
+        else
+            redirect to '/login'
+        end
+    end
+
+    get '/' do
+      erb :"drawings/create_drawing"
+    end
+
+    post '/save_image' do
+
+      @filename = params[:file][:filename]
+      file = params[:file][:tempfile]
+
+      File.open("./public/#{@filename}", 'wb') do |f|
+        f.write(file.read)
+      end
+
+      erb :"/drawings/show_drawing"
+    end
+
+    patch '/drawings/:id' do
+        if params[:art] == "" && @drawing.artist_id == session[:artist_id]
+            redirect to "/drawings/#{params[:id]}/edit"
+        else
+            @drawing = Drawing.find_by_id(params[:id])
+            @drawing.art = params[:art]
+            @drawing.save
+            redirect to "/drawings/#{@drawing.id}"
+        end
+    end
+
+    delete '/drawings/:id/delete' do
+        @drawing = Drawing.find_by_id(params[:id])
+        if session[:artist_id]
+            @drawing = Drawing.find_by_id(params[:id])
+            if @drawing.artist_id == session[:artist_id]
+                @drawing.delete
+                redirect to '/drawings'
+            else
+                redirect to '/drawings'
+            end
+        else
+            redirect to '/login'
+        end
+    end
+
 end
