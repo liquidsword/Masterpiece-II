@@ -12,7 +12,7 @@
             <input type="submit" value="Upload image">
         </form>
 
-        <p><%=drawing.art%></p>
+        <p><%=@drawing.art%></p>
 
         <form method="post" action="/drawings/<%=drawing.id%>/delete">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
