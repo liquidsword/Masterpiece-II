@@ -2,8 +2,10 @@
 
 <h2> Drawings </h2>
 
+<ul>
+
 <% @drawings.each do |drawing| %>
-  <div>
-    <%= drawing.art %>
-  </div>
+  <a href="/drawings/<%=drawing.id %>"></a>
 <% end %>
+
+</ul>
