@@ -17,8 +17,9 @@
     <nav>
       <% if logged_in? %>
 
-        <a href="/drawings/new"> Create New Artwork </a>
-        <a href="/logout"> Log Out </a>
+        <a href="/drawings/new"> New Artwork </a> |
+        <a href="/logout"> Log Out </a> |
+        <a href="/index"> Index </a>
         <p>Welcome, <%=current_artist.artist_name %></p>
 
       <% else %>
