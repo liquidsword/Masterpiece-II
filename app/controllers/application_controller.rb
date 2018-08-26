@@ -9,9 +9,15 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get "/" do
-    erb :welcome
-  end
+
+  get '/' do
+      erb :welcome
+    end
+
+  #get '/index' do
+      #erb :index
+  #end
+
 
   helpers do
     def redirect_if_not_logged_in

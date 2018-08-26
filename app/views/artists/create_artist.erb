@@ -1,12 +1,13 @@
-<h2>Artists</h2
+<h2>Welcome New Artists</h2
 
 <% unless locals.empty? %>
     <%= message %>
 <% end %>
 
 
-<h3>Sign Up</h3>
-
+<h3><strong>Sign Up</strong></h3>
+<br>
+</br>
 <form action='/join' method='POST'>
     <p>Name: <input type="text" name="artist_name"></p>
     <p>Email: <input type="text" name="email"></p>
