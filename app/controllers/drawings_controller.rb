@@ -3,7 +3,7 @@ class DrawingsController < ApplicationController
     get '/drawings' do
         if session[:artist_id]
             @drawings = Drawing.all
-            erb :'drawings/drawings'
+            erb :index
         else
             redirect to '/login'
         end
@@ -43,7 +43,7 @@ class DrawingsController < ApplicationController
         if session[:artist_id]
             @drawing = Drawing.find_by_id(params[:id])
             if @drawing.artist_id == session[:artist_id]
-                erb :'drawings/edit_drawing'
+                erb :'/drawings/edit_drawing'
             else
                 redirect to '/drawings'
             end
@@ -52,20 +52,12 @@ class DrawingsController < ApplicationController
         end
     end
 
-    get '/' do
-      erb :"drawings/create_drawing"
-    end
-
     post '/save_image' do
 
       @filename = params[:file][:filename]
       file = params[:file][:tempfile]
-
-      File.open("./public/#{@filename}", 'wb') do |f|
-        f.write(file.read)
-      end
-
-      erb :"/drawings/show_drawing"
+      
+      erb :'drawings/show_drawing'
     end
 
     patch '/drawings/:id' do
