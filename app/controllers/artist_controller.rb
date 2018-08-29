@@ -46,7 +46,7 @@ class ArtistController < ApplicationController
     get '/logout' do
         if session[:artist_id] !=nil
             session.destroy
-            erb :welcome
+            redirect to '/login'
         else
             redirect to '/'
         end

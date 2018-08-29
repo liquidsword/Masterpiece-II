@@ -11,7 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem 'tux'
-gem 'carrierwave'
+
 
 group :test do
   gem 'rspec'

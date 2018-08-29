@@ -3,7 +3,7 @@ class DrawingsController < ApplicationController
     get '/drawings' do
         if session[:artist_id]
             @drawings = Drawing.all
-            erb :index
+            erb :'drawings/drawings'
         else
             redirect to '/login'
         end
@@ -23,7 +23,7 @@ class DrawingsController < ApplicationController
             redirect to '/drawings/new'
         else
             artist = Artist.find_by_id(session[:artist_id])
-            @drawing = Drawing.create(:art => params[:art], :artist_id => artist.id)
+            @drawing = Drawing.create(:art => params[:art], :artist_id => artist.id) #may need to change code because art attribute is a string
             redirect to "/drawings/#{@drawing.id}"
         end
     end
@@ -52,11 +52,12 @@ class DrawingsController < ApplicationController
         end
     end
 
-    post '/save_image' do
+    post '/save_image' do #is this code necessary???, may have to delete this and use post '/drawings'
+                          #will have to change the code in drawings.erb and create_drawing.erb and show_drawing.erb
 
       @filename = params[:file][:filename]
       file = params[:file][:tempfile]
-      
+
       erb :'drawings/show_drawing'
     end
 
@@ -77,10 +78,9 @@ class DrawingsController < ApplicationController
             @drawing = Drawing.find_by_id(params[:id])
             if @drawing.artist_id == session[:artist_id]
                 @drawing.delete
-                redirect to '/drawings'
-            else
-                redirect to '/drawings'
             end
+                redirect to '/drawings'
+
         else
             redirect to '/login'
         end

@@ -14,10 +14,6 @@ class ApplicationController < Sinatra::Base
       erb :welcome
     end
 
-  #get '/index' do
-      #erb :index
-  #end
-
 
   helpers do
     def redirect_if_not_logged_in
