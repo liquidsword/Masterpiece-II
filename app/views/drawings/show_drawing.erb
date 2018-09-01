@@ -1,12 +1,8 @@
-<html>
-    <head>
-        <title>Show Artwork</title>
-    </head>
-    <body>
-        <h1>Masterpiece </h1>
-        <center><img src="<%= @drawing %>" width="800px" height="700px" /></center>
 
-    </body>
-</html>
+<div>
 
-#changed img src from @filename to @drawing
+        <h1>Masterpiece</h1>
+        
+        <center><img src="../images/<%= @drawing.file %>" width="800px" height="700px" class="img-fluid"/></center>
+
+</div>

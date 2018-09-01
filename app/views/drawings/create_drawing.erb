@@ -8,16 +8,10 @@
         <h2><%=current_artist.artist_name %>'s Masterpieces</h2>
 
         <form action="/drawings" method="POST" enctype="multipart/form-data">
-            <input type="file" name="art" class='form-control'>
+            <input type="file" name="file" class='form-control'>
             <input type="submit" value="Upload image">
         </form>
 
       </body>
 
 </html>
-
-#changed form action to /drawings and
-
-#input type to "art" and name to "art"
-
-#changed input type back to "file" so I can chose a file

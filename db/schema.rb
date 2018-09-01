@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 20180730222448) do
   end
 
   create_table "drawings", force: :cascade do |t|
-    t.string   "art"
+    t.string   "title"
+    t.string   "file"
     t.integer  "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

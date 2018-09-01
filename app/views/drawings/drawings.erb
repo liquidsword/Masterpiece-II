@@ -3,14 +3,11 @@
 
 <% @drawings.each do |drawing| %>
 
-
 <div>
-<center><img src="<%= @drawing %>" width="800px", height="700px" /></center>
-#make sure it connects to the image column
+
+
+  <center><img src="../images/<%= drawing.file %>" width="800px" height="700px" class="img-fluid"/></center>
+
+
 </div>
-
 <%end%>
-
-#changed @filename to @drawing to coincide with create_drawing
-#and show_drawing.erb to make sure that DrawingsController
-#is talking properly to the erb files.

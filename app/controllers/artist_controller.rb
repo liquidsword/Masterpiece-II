@@ -7,7 +7,7 @@ class ArtistController < ApplicationController
 
 
     get '/join' do
-        if !session[:artist_id]
+        if !logged_in?
             erb :'artists/create_artist', locals: {message: "Please join before attempting to post your drawing"}
         else
             redirect to '/drawings'
@@ -26,7 +26,7 @@ class ArtistController < ApplicationController
 
     get '/login' do
         @error_message = params[:error]
-        if !session[:artist_id]
+        if !logged_in?
             erb :'artists/login'
         else
             redirect '/drawings'
@@ -44,7 +44,7 @@ class ArtistController < ApplicationController
     end
 
     get '/logout' do
-        if session[:artist_id] !=nil
+        if logged_in? !=nil
             session.destroy
             redirect to '/login'
         else

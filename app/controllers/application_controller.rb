@@ -23,11 +23,11 @@ class ApplicationController < Sinatra::Base
     end
 
     def logged_in?
-      !!session[:artist_id]
+      !!current_artist
     end
 
     def current_artist
-      Artist.find(session[:artist_id])
+      @current_artist ||= Artist.find_by(id: session[:artist_id]) if session[:artist_id]
     end
   end
 end

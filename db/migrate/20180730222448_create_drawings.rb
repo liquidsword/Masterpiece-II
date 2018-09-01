@@ -1,9 +1,9 @@
 class CreateDrawings < ActiveRecord::Migration
   def change
     create_table :drawings do |t|
-      t.string :art
+      t.string :title
+      t.string :file
       t.integer :artist_id
-      t.text :image
 
       t.timestamps null: false
     end
