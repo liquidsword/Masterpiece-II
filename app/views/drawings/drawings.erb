@@ -1,13 +1,17 @@
-<h1>Here are all your masterpieces!</h1>
+<h1>Here are all your beautiful masterpieces!</h1>
 
 
 <% @drawings.each do |drawing| %>
 
 <div>
-
-
   <center><img src="../images/<%= drawing.file %>" width="800px" height="700px" class="img-fluid"/></center>
-
-
 </div>
+
+<center>
+<form action="/drawings/<%=@drawing%>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Erase?">
+</form>
+</center>
+
 <%end%>

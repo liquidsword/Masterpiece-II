@@ -85,6 +85,12 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
+  a.btn {
+    display: block;
+    padding: 10px;
+    background-color: red;
+  }
 }
 
 @media screen and (max-width: 600px) {

@@ -115,6 +115,7 @@ DEPENDENCIES
   bcrypt
   capybara
   database_cleaner!
+  nokogiri (>= 1.11.0.rc4)
   pry
   rack (>= 2.1.4)
   rack-test

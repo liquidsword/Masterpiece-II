@@ -9,10 +9,16 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
+  delete '/drawing/:id' do
+    @drawing_object = Drawing.delete(params[:id])
+    redirect to("/")
+end
+
 
   get '/' do
       erb :welcome
     end
+
 
 
   helpers do

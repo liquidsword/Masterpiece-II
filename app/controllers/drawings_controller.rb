@@ -42,12 +42,8 @@ class DrawingsController < ApplicationController
 
     get '/drawings/:id/edit' do
         if logged_in?
-            @drawing = Drawing.find_by(params[:id])
-            if @drawing.artist_id == session[:artist_id]
-                erb :'/drawings/edit_drawing'
-            else
-                redirect to '/drawings'
-            end
+            @drawing = Drawing.find_by(:id => params[:id])
+            erb :'/drawings/edit_drawing'
         else
             redirect to '/login'
         end
@@ -64,17 +60,8 @@ class DrawingsController < ApplicationController
         end
     end
 
-    delete '/drawings/:id/delete' do
-        @drawing = Drawing.find_by(params[:id])
-        if session[:artist_id]
-            @drawing = Drawing.find_by(params[:id])
-            if @drawing.artist_id == session[:artist_id]
-                @drawing.delete
-            end
-                redirect to '/drawings'
-
-        else
-            redirect to '/login'
-        end
+    delete '/drawing/:id' do
+        @drawing_object = Drawing.delete(params[:id])
+        redirect to("/drawings")
     end
 end
