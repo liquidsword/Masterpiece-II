@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem "rake", ">= 12.3.3"
+gem "nokogiri", ">= 1.11.0.rc4"
 
 
 group :test do
